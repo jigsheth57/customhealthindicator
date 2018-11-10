@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:0}
+
+management:
+  cloudfoundry:
+    skip-ssl-validation: true
+    enabled: true
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
+    env:
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+
+logging:
+  level:
+    com.netflix: ERROR
+    org.springframework.cloud: ERROR
+    io.pivotal.sfdc: DEBUG
